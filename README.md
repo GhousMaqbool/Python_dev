@@ -1,33 +1,42 @@
-
 # Python Conditions and Loops Assessment
 
-## 1. Project Overview
+## Project Overview
 
-This repository contains two separate Python applications developed for the Python Conditions and Loops assessment. Both applications demonstrate how programming concepts can solve practical business problems.
+This repository contains two independent Python applications developed as part of the Python Programming Assessment. The project demonstrates the practical implementation of conditional statements, loops, input validation, arithmetic operations, counters, and accumulators.
 
-- **Task 1 – Student Scholarship Eligibility System:** Evaluates scholarship eligibility using academic marks, attendance, and monthly family income.
-- **Task 2 – Smart Pharmacy Inventory & Sales Management System:** Processes medicine sales, updates stock, calculates revenue, and identifies medicines requiring restocking.
+The applications are designed to solve two real-world business problems:
 
-## 2. Project Structure
+1. **Student Scholarship Eligibility System** – Evaluates students' eligibility for university scholarships based on academic marks, attendance percentage, and monthly family income.
+2. **Smart Pharmacy Inventory & Sales Management System** – Manages medicine stock, processes sales, calculates revenue, and identifies medicines that require restocking.
+
+Both applications are developed using Python and follow structured programming practices.
+
+---
+
+## Project Structure
 
 ```text
 python-conditions-loops-assessment/
+│
 ├── student_scholarship_system.py
 ├── pharmacy_inventory_system.py
 └── README.md
 ```
 
-## 3. Task 1 – Student Scholarship Eligibility System
+## Task 1: Student Scholarship Eligibility System
 
-**Source File:** `student_scholarship_system.py`
+### Description
 
-### Purpose
+The Student Scholarship Eligibility System is a Python-based application that determines whether a student qualifies for a university scholarship.
 
-This application collects a student's name, academic marks, attendance percentage, and monthly family income. It checks the eligibility criteria and displays a complete scholarship evaluation report.
+The program collects the following information:
 
-### Scholarship Eligibility Rules
+- Student name
+- Academic marks (percentage)
+- Attendance percentage
+- Monthly family income (PKR)
 
-A student must satisfy all three conditions:
+### Scholarship Eligibility Criteria
 
 | Requirement | Eligibility Condition |
 |---|---|
@@ -35,298 +44,297 @@ A student must satisfy all three conditions:
 | Attendance | 85% or above |
 | Monthly Family Income | Rs. 50,000 or less |
 
-Scholarship decisions:
+### Scholarship Categories
 
-| Academic Marks | Scholarship |
-|---|---|
-| 90% or above | Full Scholarship |
-| 80% to below 90% | Partial Scholarship |
+- **Full Scholarship:** Students achieving 90% or above, provided all eligibility conditions are satisfied.
+- **Partial Scholarship:** Students achieving 80% to 89%, provided all eligibility conditions are satisfied.
+- **Not Eligible:** Students who fail to meet one or more eligibility requirements.
 
-If any requirement is not satisfied, the application displays the reasons for ineligibility.
-
-### Visual Flowchart
-
-```mermaid
-flowchart TD
-    A([Start]) --> B[/Enter Student Information/]
-    B --> C{Are Inputs Valid?}
-    C -- No --> D[Ask for Valid Input]
-    D --> B
-    C -- Yes --> E{Marks >= 80%, Attendance >= 85%, Income <= 50000?}
-    E -- No --> F[Display Reasons for Ineligibility]
-    F --> I[Display Evaluation Report]
-    E -- Yes --> G{Marks >= 90%?}
-    G -- Yes --> H[Full Scholarship]
-    G -- No --> J[Partial Scholarship]
-    H --> I
-    J --> I
-    I --> K([End])
-```
+The application also identifies the specific reason or reasons for ineligibility and generates a complete scholarship evaluation report.
 
 ### Python Concepts Used
 
-- `input()` and `print()`
-- Variables and meaningful variable names
-- `if`, `elif`, and `else`
-- Comparison operators
-- `while` loops for input validation
-- `for` loop for displaying multiple reasons
-- Lists to store ineligibility reasons
-- Functions
-- Exception handling using `try` and `except`
-
-### Sample Execution
-
-```text
-STUDENT SCHOLARSHIP ELIGIBILITY SYSTEM
-
-Enter student name: Ali
-Enter academic marks percentage: 92
-Enter attendance percentage: 90
-Enter monthly family income (Rs.): 40000
-
-SCHOLARSHIP EVALUATION REPORT
-
-Student Name          : Ali
-Academic Marks        : 92.00%
-Attendance            : 90.00%
-Monthly Family Income : Rs. 40,000.00
-
-Eligibility Status    : Eligible
-Scholarship Decision  : Full Scholarship
-
-Congratulations! You have met all scholarship requirements.
-```
-
-### Test Cases – Task 1
-
-| Test ID | Marks | Attendance | Monthly Income | Expected Result |
-|---|---:|---:|---:|---|
-| SCH-01 | 95% | 90% | Rs. 40,000 | Full Scholarship |
-| SCH-02 | 85% | 88% | Rs. 45,000 | Partial Scholarship |
-| SCH-03 | 80% | 85% | Rs. 50,000 | Partial Scholarship |
-| SCH-04 | 79% | 90% | Rs. 40,000 | Not Eligible – Low Marks |
-| SCH-05 | 90% | 84% | Rs. 40,000 | Not Eligible – Low Attendance |
-| SCH-06 | 90% | 90% | Rs. 60,000 | Not Eligible – High Income |
-| SCH-07 | 70% | 80% | Rs. 60,000 | All Three Reasons Displayed |
-| SCH-08 | 90% | 90% | Rs. 50,000 | Full Scholarship |
-
-### Input Validation Test Cases
-
-| Test ID | Invalid Input | Expected Result |
-|---|---|---|
-| SCH-V01 | Marks = abc | Ask for valid number |
-| SCH-V02 | Attendance = 105 | Reject percentage |
-| SCH-V03 | Income = -500 | Reject negative income |
-| SCH-V04 | Empty student name | Ask for name again |
+- `input()` and `print()` functions
+- Variables and data types
+- Type conversion using `float()`
+- Conditional statements (`if`, `elif`, `else`)
+- Logical operators (`and`)
+- Input validation
+- Arithmetic and comparison operators
+- Formatted output using f-strings
 
 ---
 
-## 4. Task 2 – Smart Pharmacy Inventory & Sales Management System
+## Task 2: Smart Pharmacy Inventory & Sales Management System
 
-**Source File:** `pharmacy_inventory_system.py`
+### Description
 
-### Purpose
+The Smart Pharmacy Inventory & Sales Management System is a Python-based application designed to manage medicine inventory and calculate daily sales revenue.
 
-This application manages medicine inventory and calculates daily pharmacy sales revenue.
+The application first asks the user how many different medicines need to be processed. It then uses a `for` loop to process each medicine individually.
 
-It asks how many different medicines need to be processed and collects the following information for each medicine:
+For every medicine, the program collects:
 
 - Medicine name
 - Available stock
-- Price per unit
+- Price per unit (PKR)
 - Quantity sold
 
-The program checks stock availability before processing a sale.
+### Main Features
 
-If the requested quantity is available, the sale is completed and the remaining stock is calculated.
-
-If the requested quantity is greater than available stock, the sale is rejected.
-
-A low-stock warning is displayed whenever remaining stock is below 10 units.
-
-### Business Calculations
-
-- Sales Amount = Quantity Sold × Price Per Unit
-- Remaining Stock = Available Stock − Quantity Sold
-- Total Revenue = Sum of Successful Sales
-- Restocking Count = Number of Medicines with Remaining Stock Below 10
-
-### Visual Flowchart
-
-```mermaid
-flowchart TD
-    A([Start]) --> B[/Enter Number of Medicines/]
-    B --> C[Initialize Revenue and Restock Counter]
-    C --> D[Start For Loop]
-    D --> E[/Enter Medicine Details/]
-    E --> F{Quantity Sold <= Available Stock?}
-    F -- Yes --> G[Calculate Sales Amount and Remaining Stock]
-    G --> H[Add Sales Amount to Total Revenue]
-    F -- No --> I[Reject Sale and Keep Stock Unchanged]
-    H --> J{Remaining Stock < 10?}
-    I --> J
-    J -- Yes --> K[Display Low Stock Warning and Increase Counter]
-    J -- No --> L[Display Sufficient Stock]
-    K --> M{More Medicines?}
-    L --> M
-    M -- Yes --> D
-    M -- No --> N[Display Final Pharmacy Report]
-    N --> O([End])
-```
+1. Processes multiple medicines using a `for` loop.
+2. Validates medicine details and numerical inputs.
+3. Checks whether the requested sales quantity is available in stock.
+4. Calculates the total sales amount for successful sales.
+5. Updates and displays the remaining stock.
+6. Displays a low-stock warning when remaining stock is below 10 units.
+7. Maintains total pharmacy revenue using an accumulator.
+8. Counts medicines requiring restocking.
+9. Generates a final pharmacy sales report.
 
 ### Python Concepts Used
 
-- `input()` and `print()`
-- Variables and arithmetic operators
-- `for` loop
-- `range()` function
-- `if` and `else` conditions
-- `while` loops for input validation
-- Counter to count medicines requiring restocking
-- Accumulator to calculate total revenue
-- Functions
-- Exception handling using `try` and `except`
-
-### Sample Execution
-
-```text
-SMART PHARMACY INVENTORY & SALES MANAGEMENT
-
-How many different medicines do you want to process? 2
-
---- Medicine 1 of 2 ---
-
-Enter medicine name: Panadol
-Enter available stock: 50
-Enter price per unit: 20
-Enter quantity to sell: 45
-
-Sale processed successfully.
-
-Medicine Name       : Panadol
-Quantity Sold       : 45
-Sales Amount        : Rs. 900
-Remaining Stock     : 5 units
-
-LOW-STOCK WARNING: This medicine needs restocking.
-
---- Medicine 2 of 2 ---
-
-Enter medicine name: Brufen
-Enter available stock: 30
-Enter price per unit: 15
-Enter quantity to sell: 10
-
-Sale processed successfully.
-
-Medicine Name       : Brufen
-Quantity Sold       : 10
-Sales Amount        : Rs. 150
-Remaining Stock     : 20 units
-
-Stock level is sufficient.
-
-DAILY PHARMACY REPORT
-
-Total Medicines Processed  : 2
-Total Pharmacy Revenue     : Rs. 1,050
-Medicines Requiring Restock: 1
-```
-
-### Test Cases – Task 2
-
-| Test ID | Medicine | Available Stock | Price | Quantity Sold | Expected Result |
-|---|---|---:|---:|---:|---|
-| PHY-01 | Panadol | 50 | 20 | 20 | Successful Sale, Rs. 400 Revenue |
-| PHY-02 | Brufen | 15 | 15 | 15 | Sale Successful, Low Stock |
-| PHY-03 | Syrup | 5 | 120 | 8 | Sale Rejected |
-| PHY-04 | Vitamin C | 20 | 10 | 0 | Zero Quantity Sale |
-| PHY-05 | Medicine X | 10 | 50 | 1 | Remaining Stock 9, Warning |
-| PHY-06 | Medicine Y | 20 | 25 | 10 | Remaining Stock 10, No Warning |
-
-### Input Validation Test Cases
-
-| Test ID | Invalid Input | Expected Result |
-|---|---|---|
-| PHY-V01 | Number of medicines = abc | Ask for valid number |
-| PHY-V02 | Number of medicines = 0 | Reject zero |
-| PHY-V03 | Available stock = -5 | Reject negative stock |
-| PHY-V04 | Price = 0 or -10 | Reject invalid price |
-| PHY-V05 | Quantity sold = -2 | Reject negative quantity |
-| PHY-V06 | Empty medicine name | Ask for medicine name again |
-
-### Example Revenue Calculation
-
-| Medicine | Quantity Sold | Price | Sales Amount |
-|---|---:|---:|---:|
-| Panadol | 45 | Rs. 20 | Rs. 900 |
-| Brufen | 10 | Rs. 15 | Rs. 150 |
-| **Total** | | | **Rs. 1,050** |
-
-Final Results:
-
-- Total Medicines Processed: 2
-- Total Pharmacy Revenue: Rs. 1,050
-- Medicines Requiring Restocking: 1
+- Variables and data types
+- `input()` and `print()` functions
+- `for` loop and `range()`
+- Conditional statements (`if`, `else`)
+- Nested conditional statements
+- Input validation
+- Type conversion
+- Arithmetic operators
+- Counters and accumulators
+- Formatted output using f-strings
 
 ---
 
-## 5. Requirements
+## Software Requirements
+
+Before running these applications, ensure that you have:
 
 - Python 3.8 or later
-- Visual Studio Code, PyCharm, or IDLE
-- No external Python libraries required
+- A code editor such as Visual Studio Code (VS Code)
+- Git (for cloning the repository)
+- A GitHub account
 
-## 6. How to Run the Programs
+No external Python libraries are required. Both applications use Python's built-in functionality.
 
-First, download or clone this repository and open the project folder in VS Code.
+## Installation and Setup Instructions
 
-### Run Task 1 – Scholarship System
+### Step 1: Install Python
+
+Download and install Python from:
+
+https://www.python.org/downloads/
+
+Verify the installation by opening Command Prompt or Terminal and executing:
+
+```bash
+python --version
+```
+
+### Step 2: Clone the GitHub Repository
+
+Open your terminal and execute:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/python-conditions-loops-assessment.git
+```
+
+Replace `YOUR-USERNAME` with your actual GitHub username.
+
+### Step 3: Navigate to the Project Directory
+
+```bash
+cd python-conditions-loops-assessment
+```
+
+### Step 4: Run the Scholarship Application
 
 ```bash
 python student_scholarship_system.py
 ```
 
-### Run Task 2 – Pharmacy System
+### Step 5: Run the Pharmacy Application
 
 ```bash
 python pharmacy_inventory_system.py
 ```
 
-If your computer uses `python3`, replace `python` with `python3`.
+**Note:** If the `python` command does not work on Windows, try using `py` instead.
 
 ---
 
-## 7. GitHub Setup
+## Sample Execution and Expected Output
 
-Create a GitHub repository with this name:
+The following examples demonstrate the expected behavior of both applications.
+
+### Task 1: Scholarship System
+
+**Sample Input**
 
 ```text
-python-conditions-loops-assessment
+Enter Student Name: Ali
+Enter Academic Marks: 92
+Enter Attendance Percentage: 90
+Enter Monthly Family Income: 40000
 ```
 
-Use the following commands in the project folder:
+**Expected Output**
 
-```bash
-git init
-git add .
-git commit -m "Complete Python conditions and loops assessment"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/python-conditions-loops-assessment.git
-git push -u origin main
+```text
+========================================
+       STUDENT SCHOLARSHIP REPORT
+========================================
+
+Student Name: Ali
+Academic Marks: 92%
+Attendance: 90%
+Monthly Family Income: Rs. 40000
+
+Scholarship Status: ELIGIBLE
+Scholarship Category: FULL SCHOLARSHIP
+
+All eligibility requirements have been satisfied.
+
+========================================
 ```
 
-Replace `YOUR-USERNAME` with your GitHub username.
+**Additional Testing Scenarios**
+
+| Test Case | Marks | Attendance | Income | Expected Result |
+|---|---:|---:|---:|---|
+| 1 | 95 | 90 | 30000 | Full Scholarship |
+| 2 | 85 | 88 | 45000 | Partial Scholarship |
+| 3 | 75 | 90 | 30000 | Not Eligible |
+| 4 | 90 | 80 | 30000 | Not Eligible |
+| 5 | 90 | 90 | 60000 | Not Eligible |
+| 6 | Invalid text | 90 | 30000 | Input validation |
+
+### Task 2: Pharmacy Inventory System
+
+**Sample Input**
+
+```text
+Enter number of medicines: 2
+
+Medicine 1:
+Enter Medicine Name: Paracetamol
+Enter Available Stock: 50
+Enter Price Per Unit: 20
+Enter Quantity Sold: 45
+
+Medicine 2:
+Enter Medicine Name: Amoxicillin
+Enter Available Stock: 30
+Enter Price Per Unit: 50
+Enter Quantity Sold: 10
+```
+
+**Expected Output**
+
+```text
+========================================
+       PHARMACY SALES REPORT
+========================================
+
+Medicine: Paracetamol
+Quantity Sold: 45
+Total Sales: Rs. 900
+Remaining Stock: 5
+WARNING: Low stock! Restocking required.
+
+Medicine: Amoxicillin
+Quantity Sold: 10
+Total Sales: Rs. 500
+Remaining Stock: 20
+
+========================================
+          FINAL SUMMARY
+========================================
+
+Total Medicines Processed: 2
+Total Pharmacy Revenue: Rs. 1400
+Medicines Requiring Restocking: 1
+
+========================================
+```
+
+**Additional Testing Scenarios**
+
+| Test Case | Available Stock | Quantity Sold | Expected Result |
+|---|---:|---:|---|
+| 1 | 50 | 20 | Sale successful |
+| 2 | 20 | 20 | Sale successful, zero stock |
+| 3 | 15 | 10 | Low-stock warning |
+| 4 | 10 | 15 | Insufficient stock |
+| 5 | 40 | 0 | Invalid sales quantity |
+| 6 | Invalid text | 10 | Input validation |
+
+*Note: These are sample test scenarios and expected results. Actual output formatting may vary slightly depending on the implementation.*
 
 ---
 
-## 8. Conclusion
+## Input Validation and Error Handling
 
-This assessment demonstrates the practical use of conditional statements and loop structures in Python.
+Both applications include input validation to improve reliability and prevent invalid data from affecting program execution.
 
-The Student Scholarship Eligibility System uses conditional statements to evaluate student eligibility, while the Smart Pharmacy Inventory System uses loops, counters, and accumulators to manage medicine sales and inventory.
+Examples of validation include:
 
-Both applications include input validation, meaningful variables, functions, and proper output reports.
+- Rejecting empty student and medicine names.
+- Accepting only numerical values for marks, attendance, income, stock, prices, and quantities.
+- Ensuring academic marks and attendance remain between 0 and 100.
+- Preventing negative family income, stock, prices, and sales quantities.
+- Ensuring the number of medicines is a valid positive integer.
+- Preventing pharmacy sales quantities from exceeding available stock.
 
+Invalid entries should display an appropriate error message and request valid input again.
 
+## Testing Strategy
+
+Both applications should be tested with multiple input scenarios to verify their functionality.
+
+Testing includes:
+
+1. Valid inputs that satisfy all requirements.
+2. Invalid text inputs in numerical fields.
+3. Boundary values for scholarship eligibility.
+4. Students who fail individual eligibility conditions.
+5. Successful pharmacy sales.
+6. Insufficient stock situations.
+7. Low-stock situations.
+8. Multiple medicines to verify revenue calculations and restocking counters.
+
+The expected results are documented in the sample testing tables above.
+
+## Learning Outcomes
+
+Through this assessment, I developed practical understanding of:
+
+- Applying conditional statements to real-world problems.
+- Using loops to process multiple records.
+- Validating user input and handling incorrect values.
+- Performing calculations using arithmetic operators.
+- Maintaining totals using accumulators.
+- Tracking quantities using counters.
+- Organizing Python programs using meaningful variable names.
+- Documenting and managing projects using Git and GitHub.
+
+## Author
+
+**Project:** Python Conditions and Loops Assessment
+
+**Programming Language:** Python
+
+**Repository:** `python-conditions-loops-assessment`
+
+**Purpose:** Academic Programming Assessment
+
+---
+
+## Conclusion
+
+This project demonstrates the practical application of Python conditional statements and loop structures through two independent applications.
+
+The Student Scholarship Eligibility System applies decision-making logic to evaluate scholarship applications, while the Smart Pharmacy Inventory & Sales Management System demonstrates inventory processing, sales calculations, and stock monitoring.
+
+Both programs aim to provide accurate results, validate user inputs, and demonstrate fundamental Python programming concepts through practical business scenarios.
